@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Welcome to Movie Mania</title>
+
+  <%- include("partials/links") -%>
+
+  <link rel="stylesheet" href="/css/index.css">
+
+</head>
+
+<body>
+  <!-- including the navbar -->
+  <%- include("partials/navbar") -%>
+
+  <div class="container">
+    <br />
+    <h2 class="heading" id="head"></h2>
+    <h2 class="heading">Your Movies!!</h2>
+    <div id="searchedMovies" class="row text-center">
+      <% if(movies.length != 0) {%>
+      <% movies.forEach(function(movie){ %>
+      <% if(movie.poster_path != null){ %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <a href="/movie/<%= movie.id %>"><img class="card-img-top img-height" src="https://image.tmdb.org/t/p/original<%= movie.poster_path %>" alt=""></a>
+          <div class="card-footer">
+            <a href="/addWatched/<%= movie.id %>" class="btn btn-primary btn-sm desc-font" style="float:left">+ Watched</a>
+            <a href="/addWished/<%= movie.id %>" class="btn btn-primary btn-sm desc-font" style="float:right">+ Wished</a>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <% }); %>
+      <% } else { %>
+        <h2 class="heading">No movies Found :(</h2>
+      <% } %>
+    </div>
+
+  </div>
+
+  <%- include("partials/footer") -%>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</body>
+
+</html>

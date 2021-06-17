@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Welcome to Movie Mania</title>
+  <%- include("partials/links") -%>
+
+  <link rel="stylesheet" href="/css/index.css">
+
+</head>
+
+<body>
+
+  <!-- including the navbar -->
+  <%- include("partials/navbar") -%>
+
+  <!-- Page Content -->
+  <div class="container">
+    <br />
+    <h2 id="head" class="heading"></h2>
+    <div class="row" id="showWished">
+      <% if(movies.length != 0){ %>
+      <% movies.forEach(function(movie){ %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <a href="/movie/<%= movie.movieId %>"><img class="card-img-top img-height" src="https://image.tmdb.org/t/p/original<%= movie.posterPath %>" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title desc-font">
+              <%= movie.title %>
+            </h4>
+            <a href="/delete/<%= movie.movieId %>/0" class="btn btn-danger btn-sm desc-font" style="float:left;">Remove</a>
+            <a href="/toWatchList/<%= movie.movieId %>" class="btn btn-primary btn-sm desc-font" style="float:right;">Watched</a>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+      <% } else { %>
+      <h1 class="my-4 heading">You don't have any movies in Wishlist :(</h1>
+      <% } %>
+    </div>
+
+
+  </div>
+
+  <%- include("partials/footer") -%>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</body>
+
+</html>

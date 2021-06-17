@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Welcome to Movie Mania</title>
+
+  <link rel="stylesheet" href="/css/index.css">
+  <%- include("partials/links") -%>
+
+</head>
+
+<body>
+
+  <!-- including the navbar -->
+  <%- include("partials/navbar") -%>
+
+  <div class="container">
+
+    <!-- Portfolio Item Heading -->
+    <div id="movieSingle">
+      <h1 class="my-4 heading"><%= movie.Title %></h1>
+
+      <div class="row">
+
+        <div class="col-md-5">
+          <img style="" class="img-fluid" src="<%= movie.Poster %>" alt="">
+        </div>
+
+        <div class="col-md-7">
+          <ul class="list-group">
+            <li class="list-group-item desc-font"><strong>Genre: </strong><%= movie.Genre %></li>
+            <li class="list-group-item desc-font"><strong>Released: </strong><%= movie.Released %></li>
+            <li class="list-group-item desc-font"><strong>Rated: </strong><%= movie.Rated %></li>
+            <li class="list-group-item desc-font"><strong>IMDB Rating: </strong><%= movie.imdbRating %></li>
+            <li class="list-group-item desc-font"><strong>Director: </strong><%= movie.Director %></li>
+            <li class="list-group-item desc-font"><strong>Writer: </strong><%= movie.Writer %></li>
+            <li class="list-group-item desc-font"><strong>Actors: </strong><%= movie.Actors %></li>
+          </ul>
+          <li class="list-group-item desc-font"><strong>Overview: </strong><%= movie.Plot %></li>
+          <a href="http://imdb.com/title/<%= movie.imdbID %>" target="blank" class="btn btn-primary desc-font">View IMDB</a>
+          <a href="/addWatched/<%= id %>" class="btn btn-primary desc-font">Add to Watched</a>
+          <a href="/addWished/<%= id %>" class="btn btn-primary desc-font">Add to Wished</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Related movies Row -->
+    <h3 class="my-4 heading">Similar Movies</h3>
+
+    <div id="similarMovies" class="row">
+      <% if(similarMovies.length != 0){ %>
+      <% similarMovies.forEach(function(movie){ %>
+      <% if(movie.poster_path != null){ %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <a href="/movie/<%= movie.id %>"><img class="card-img-top img-height" src="https://image.tmdb.org/t/p/original<%= movie.poster_path %>" alt=""></a>
+          <div class="card-footer">
+            <a href="/addWatched/<%= movie.id %>" class="btn btn-primary btn-sm desc-font" style="float:left">+ Watched</a>
+            <a href="/addWished/<%= movie.id %>" class="btn btn-primary btn-sm desc-font" style="float:right">+ Wished</a>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <% }); %>
+      <% } else{ %>
+        <h4 class="heading">No Similar Movies Found :(</h4>
+      <% } %>
+    </div>
+
+    </div>
+
+  <%- include("partials/footer") -%>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- <script src="js/display.js"></script> -->
+
+</body>
+
+</html>

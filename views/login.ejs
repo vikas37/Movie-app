@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Welcome to Movie Mania</title>
+
+  <%- include("partials/links") -%>
+
+	<link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/login.css">
+
+</head>
+<body>
+  <!-- including the navbar -->
+  <%- include("partials/navbar") -%>
+
+    <div class="container row container-box">
+      <div class="left col-md-8">
+        <img src="images/minions.jpg">
+      </div>
+      <div class="login-div col-md-4" >
+        <form action="/login" method="POST">
+          <h2><b>Login</b></h2>
+          <% if(error){ %>
+            <div id="errorMsg" class="alert alert-danger"><%= error %></div>
+          <% } %>
+            <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="email">Email</label>
+              <% const emailValue = email == undefined ? '' : email; %>
+              <input type="email" class="form-control round" name="email" id="email" value="<%= emailValue %>" placeholder="Email">
+            </div>
+            <div class="form-group col-md-12">
+              <label for="password">Password</label>
+              <input type="password" class="form-control round" name="password" id="password" placeholder="Password">
+            </div>
+          </div>
+          <button type="submit" name="submit" class="btn btn-primary round-btn">Sign in</button>
+          <a href="/register" class="to-right">Sign Up</a>
+        </form>
+      </div>
+    </div>
+
+  <%- include("partials/footer") -%>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+.container-box{
+	border: 1px solid white;
+	border-radius: 20px;
+	height: 500px;
+	width: 100%;
+	margin: 20px auto;
+	background-color: white;	
+}
+
+.round{
+	border-radius: 20px;
+}
+
+.round-btn{
+	border-radius: 20px;
+	width: 150px;
+}
+
+img{
+	height: 500px;
+	width: 100%;
+}
+
+.left{
+	float: left;
+}
+
+.login-div{
+	float: right;
+	top: 25%;
+}
+
+.to-right{
+	float: right;
+}

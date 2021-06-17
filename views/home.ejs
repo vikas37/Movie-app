@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Welcome to Movie Mania</title>
+
+  <%- include("partials/links") -%>
+
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+  <!-- including the navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <img style="width:50px; height: 50px;" src="/images/movie_mania.jpg">
+      <a class="navbar-brand" href="/" style="font-family: 'Montserrat', sans-serif;">Movie Mania</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/" style="font-family: 'Montserrat', sans-serif;">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/watchList" style="font-family: 'Montserrat', sans-serif;">Watched List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/wishList" style="font-family: 'Montserrat', sans-serif;">Wished List</a>
+          </li>
+
+          <% if(isAuth) {%>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout" style="font-family: 'Montserrat', sans-serif;">Log Out</a>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/login" style="font-family: 'Montserrat', sans-serif;">Log In</a>
+            </li>
+          <% } %>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/contact" style="font-family: 'Montserrat', sans-serif;">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Jumbotron Header -->
+  <header class="jumbotron my-4 custom-jumbo">
+    <h1 class="display-3 disp-custom">Search for the Movie</h1>
+    <!-- Search form -->
+    <form id="searchForm" action="/search" method="POST">
+      <div class="active-cyan-4 mb-4">
+        <input id="searchText" class="form-control" type="text" name="searchText" placeholder="Search" aria-label="Search"><br />
+        <button type="submit" class="btn btn-primary btn-lg btn-custom" name="search">Search</button>
+      </div>
+    </form>
+  </header>
+
+  <div class="container">
+
+    <h2 class="heading">Upcoming Movies</h2>
+    <div id="upcoming" class="row text-center">
+      <% upcoming.forEach(function(movie){ %>
+      <% if(movie.poster_path != null){ %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <a href="/movie/<%= movie.id %>"><img class="card-img-top img-height" src="https://image.tmdb.org/t/p/original<%= movie.poster_path %>" alt=""></a>
+          <div class="card-footer">
+            <a href="/addWatched/<%= movie.id %>" class="btn btn-primary btn-sm desc-font" style="float:left">+ Watched</a>
+            <a href="/addWished/<%= movie.id %>" class="btn btn-primary btn-sm desc-font" style="float:right">+ Wished</a>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <% }); %>
+    </div>
+
+    <hr />
+
+    <h2 class="heading">Popular Movies</h2>
+    <div id="top-rated" class="row text-center">
+      <% toprated.forEach(function(movie){ %>
+      <% if(movie.poster_path != null){ %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <a href="movie/<%= movie.id %>"><img class="card-img-top img-height" src="https://image.tmdb.org/t/p/original<%= movie.poster_path %>" alt=""></a>
+          <div class="card-footer">
+            <a href="/addWatched/<%= movie.id %>" class="btn btn-primary btn-sm desc-font" style="float:left">+ Watched</a>
+            <a href="/addWished/<%= movie.id %>" class="btn btn-primary btn-sm desc-font" style="float:right">+ Wished</a>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <% }); %>
+    </div>
+  </div>
+  <%- include("partials/footer") -%>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</body>
+
+</html>

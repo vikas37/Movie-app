@@ -1,0 +1,33 @@
+body{
+	background: url("../images/background-1.jpg");
+}
+
+.custom-jumbo{
+	margin-top: 0px!important;
+	background-image: url("../images/movie_img.jpg");
+	background-size: cover;
+}
+
+.active-cyan-4 input[type=text] {
+	width: 50%;
+}
+
+.btn-custom{
+	background-color: #6b0666;
+}
+
+.disp-custom{
+	font-weight: bolder;
+	color: white;
+	mix-blend-mode: difference;
+}
+
+.heading{
+	color: white;
+	font-family: 'Acme', sans-serif;
+	font-size: 50px;
+}
+
+.desc-font{
+	font-family: 'Balsamiq Sans', cursive;
+}
